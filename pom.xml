@@ -15,4 +15,22 @@
 
   <packaging>pom</packaging>
 
+  <organization>
+    <name>Paco - Ejemplos de Java</name>
+  </organization>
+
+  <developers>
+    <developer>
+      <name>Paco Recio</name>
+      <organization>Paco - Ejemplos de Java</organization>
+    </developer>
+  </developers>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>19</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+  </properties>
 </project>
