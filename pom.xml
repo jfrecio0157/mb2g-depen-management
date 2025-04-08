@@ -37,7 +37,7 @@
     <maven.compiler.target>${java.version}</maven.compiler.target>
   </properties>
 
-  <!-- Dependencias que se pueden usar aguas a bajo. Se indica las versiones a usar -->
+  <!-- Define versiones y configuraciones de dependencias para ser heredadas por módulos hijos. -->
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -70,7 +70,7 @@
     </dependencies>
   </dependencyManagement>
 
-  <!-- Dependencias del propio proyecto por los que usen este pom.xml-->
+  <!-- Declara las dependencias que el proyecto necesita directamente.-->
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -144,4 +144,52 @@
     </dependency>
   </dependencies>
 
+  <build>
+    <plugins>
+      <!-- Facilita la creación de archivos JAR ejecutables para aplicaciones Spring Boot. -->
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <!-- Limpia el directorio de destino (target) antes de la compilación, por eso se pone phase initialize -->
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>auto-clean</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- Compila el código fuente y configura procesadores de anotaciones. -->
+      <!-- La configuración incluye rutas para procesadores de anotaciones como MapStruct y Lombok, y argumentos del compilador -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.mapstruct</groupId>
+              <artifactId>mapstruct-processor</artifactId>
+              <version>${org.mapstruct.version}</version>
+            </path>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+          </annotationProcessorPaths>
+          <compilerArgs>
+            <compilerArg>
+              -Amapstruct.defaultComponentModel=spring
+            </compilerArg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
