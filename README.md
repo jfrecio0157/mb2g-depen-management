@@ -30,4 +30,4 @@ El plugin se utiliza para ejecutar reglas que aseguran el cumplimiento de cierta
 **Require Maven Version:** Asegura que se esté utilizando una versión específica de Maven.  
 **Require Java Version:** Verifica que se esté utilizando una versión específica de Java.  
 **Ban Transitive Dependencies:** Prohíbe dependencias transitivas no deseada  
-**Require Release Deps: ** Verifica que no haya ninguna dependencia con snapshot  
+**Require Release Deps:** Verifica que no haya ninguna dependencia con snapshot  
